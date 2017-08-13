@@ -75,7 +75,7 @@
     $.getJSON(jsonURL2, function(data) {
     	$.each( data, function(key, val) {
     		if (key == 'alerts') {
-    			for (i=0; i < val.length; i++){
+                for (i=0; i < val.length; i++){
                     var lat = val[i].location.y;
                     var lng = val[i].location.x;
                     if (val[i].type == 'WEATHERHAZARD') {
