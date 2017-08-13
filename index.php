@@ -1,34 +1,33 @@
 <?php header('Access-Control-Allow-Origin: *'); ?>
 <html>
 <head>	
-	<title>Leaflet Qlue</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" href="img/qlue-favicon.png" sizes="32x32" />
+    <title>Leaflet Qlue</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/qlue-favicon.png" sizes="32x32" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin=""/>
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
 
-	<style>
-        html, body, #map {
-            height: 100%;
-        }
-        body {
-            padding: 0;
-            margin: 0;
-        }
-	</style>
-
+    <style>
+           html, body, #map {
+               height: 100%;
+           }
+           body {
+               padding: 0;
+               margin: 0;
+           }
+    </style>
 </head>
 
 <body>
 <div id='map'></div>
 
 <script> 
-	var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-			     '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			     'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-		mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+    var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+    			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
 
 	var grayscale = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
 		streets = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
@@ -45,47 +44,9 @@
         });
         qlueIcon.push(qlueIconIndex);
     }
-/*
-	var qlueIcon = L.icon({
-		iconUrl: 'img/icon-marker.png',
-		iconSize: [32, 37],
-		iconAnchor: [16, 37],
-		popupAnchor: [0, -28]
-	});
-    var qlueIcon0 = L.icon({
-        iconUrl: 'img/icon-marker (0).png',
-        iconSize: [32, 37],
-        iconAnchor: [16, 37],
-        popupAnchor: [0, -28]
-    });
-    var qlueIcon1 = L.icon({
-        iconUrl: 'img/icon-marker (1).png',
-        iconSize: [32, 37],
-        iconAnchor: [16, 37],
-        popupAnchor: [0, -28]
-    });
-    var qlueIcon2 = L.icon({
-        iconUrl: 'img/icon-marker (2).png',
-        iconSize: [32, 37],
-        iconAnchor: [16, 37],
-        popupAnchor: [0, -28]
-    });
-    var qlueIcon3 = L.icon({
-        iconUrl: 'img/icon-marker (3).png',
-        iconSize: [32, 37],
-        iconAnchor: [16, 37],
-        popupAnchor: [0, -28]
-    });
-    var qlueIcon4 = L.icon({
-        iconUrl: 'img/icon-marker (4).png',
-        iconSize: [32, 37],
-        iconAnchor: [16, 37],
-        popupAnchor: [0, -28]
-    });
-*/
 
-    var jsonURL1 = "data/getDataExample.php";
-	var jsonURL2 = "data/waze.json";
+    var jsonURL1 = "data/getDataExample.php",
+    	jsonURL2 = "data/waze.json";
 
     var terminalBus = L.layerGroup();
     $.getJSON(jsonURL1, function(data) {
