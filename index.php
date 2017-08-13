@@ -51,8 +51,8 @@
     var terminalBus = L.layerGroup();
     $.getJSON(jsonURL1, function(data) {
         $.each( data, function( key, val) {
-        	var lat = val.lat;
-        	var lng = val.lng;
+            var lat = val.lat;
+            var lng = val.lng;
             var marker = L.marker([lat, lng], {icon: qlueIcon[0]});
 
             var popup_content = L.popup()
@@ -76,8 +76,8 @@
     	$.each( data, function(key, val) {
     		if (key == 'alerts') {
     			for (i=0; i < val.length; i++){
-    				var lat = val[i].location.y;
-    				var lng = val[i].location.x;
+                    var lat = val[i].location.y;
+                    var lng = val[i].location.x;
                     if (val[i].type == 'WEATHERHAZARD') {
                         var marker = L.marker([lat, lng], {icon: qlueIcon[2]});
                     } else if (val[i].type == 'JAM') {
