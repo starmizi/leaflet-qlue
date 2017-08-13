@@ -25,8 +25,8 @@
 
 <script> 
     var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-    			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
         mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
 
 	var grayscale = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
@@ -51,8 +51,8 @@
     var terminalBus = L.layerGroup();
     $.getJSON(jsonURL1, function(data) {
         $.each( data, function( key, val) {
-    		var lat = val.lat;
-    		var lng = val.lng;
+        	var lat = val.lat;
+        	var lng = val.lng;
             var marker = L.marker([lat, lng], {icon: qlueIcon[0]});
 
             var popup_content = L.popup()
@@ -76,8 +76,8 @@
     	$.each( data, function(key, val) {
     		if (key == 'alerts') {
     			for (i=0; i < val.length; i++){
-    		        var lat = val[i].location.y;
-    		        var lng = val[i].location.x;
+    				var lat = val[i].location.y;
+    				var lng = val[i].location.x;
                     if (val[i].type == 'WEATHERHAZARD') {
                         var marker = L.marker([lat, lng], {icon: qlueIcon[2]});
                     } else if (val[i].type == 'JAM') {
@@ -108,13 +108,13 @@
     });
 
     var map = L.map('map', {
-		center: [-6.2, 106.9],
-		zoom: 11,
-		layers: [streets, waze],
-		zoomControl: true,
-        attributionControl: false,
-        fullscreenControl: true,
-        defaultExtentControl: true
+    	center: [-6.2, 106.9],
+    	zoom: 11,
+    	layers: [streets, waze],
+    	zoomControl: true,
+    	attributionControl: false,
+    	fullscreenControl: true,
+    	defaultExtentControl: true
 	});
 
 	var baseLayers = {
