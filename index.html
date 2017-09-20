@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin=""/>
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+    <script src="vendor/leaflet-wms/leaflet.wms.js"></script>
 
     <style>
         html, body, #map {
@@ -107,10 +108,23 @@
         })
     });
 
-    var wmsLayer = L.tileLayer.wms('https://demo.boundlessgeo.com/geoserver/ows?', {
-        layers: 'nasa:bluemarble'});
-    var wmsLayer2 = L.tileLayer.wms('http://localhost:8080/geoserver/nurc/wms', {
-        layers: 'nurc:Arc_Sample'});
+    /* Add WMS Layer */
+    var options = {
+        "format": "image/png",
+        "transparent": "true",
+        "attribution": "<a href='http://localhost/'>GLC</a>",
+        "info_format": "text/html",
+        "tiled": true
+    };
+    var sourceGlc = L.WMS.source("http://localhost:8080/geoserver/qlue/wms", options);
+    var wmsGlcPolygon = sourceGlc.getLayer('qlue:SITEPLAN_GLC_POLYGON');
+
+    //var wmsLayer = L.tileLayer.wms('https://demo.boundlessgeo.com/geoserver/ows?', {
+    //    layers: 'nasa:bluemarble'});
+    //var wmsLayer2 = L.tileLayer.wms('http://localhost:8080/geoserver/qlue/wms', {
+    //    layers: 'qlue:SITEPLAN_GLC_POLYGON',
+	//transparent: true,
+	//});
 
     var map = L.map('map', {
     	center: [-6.2, 106.9],
@@ -125,12 +139,11 @@
 	var baseLayers = {
 		"Grayscale": grayscale,
 		"Streets": streets,
-        "Blue Marble": wmsLayer,
-        "Arc Sample": wmsLayer2
 	};
 	var overlays = {
+		"GLC"	      : wmsGlcPolygon,
 		"Terminal Bus": terminalBus,
-		"Laporan Waze": waze
+		"Laporan Waze": waze,
 	};
 	L.control.layers(baseLayers, overlays).addTo(map);
 </script>
