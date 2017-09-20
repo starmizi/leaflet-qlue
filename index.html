@@ -1,4 +1,4 @@
-<?php header('Access-Control-Allow-Origin: *'); ?>
+<!--?php header('Access-Control-Allow-Origin: *'); ?-->
 <html>
 <head>	
     <title>Leaflet Qlue</title>
@@ -10,13 +10,13 @@
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
 
     <style>
-           html, body, #map {
-               height: 100%;
-           }
-           body {
-               padding: 0;
-               margin: 0;
-           }
+        html, body, #map {
+            height: 100%;
+        }
+        body {
+            padding: 0;
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -107,6 +107,11 @@
         })
     });
 
+    var wmsLayer = L.tileLayer.wms('https://demo.boundlessgeo.com/geoserver/ows?', {
+        layers: 'nasa:bluemarble'});
+    var wmsLayer2 = L.tileLayer.wms('http://localhost:8080/geoserver/nurc/wms', {
+        layers: 'nurc:Arc_Sample'});
+
     var map = L.map('map', {
     	center: [-6.2, 106.9],
     	zoom: 11,
@@ -119,7 +124,9 @@
 
 	var baseLayers = {
 		"Grayscale": grayscale,
-		"Streets": streets
+		"Streets": streets,
+        "Blue Marble": wmsLayer,
+        "Arc Sample": wmsLayer2
 	};
 	var overlays = {
 		"Terminal Bus": terminalBus,
