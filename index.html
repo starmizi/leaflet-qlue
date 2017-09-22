@@ -117,7 +117,23 @@
         "tiled": true
     };
     var sourceGlc = L.WMS.source("http://localhost:8080/geoserver/qlue/wms", options);
-    var wmsGlcPolygon = sourceGlc.getLayer('qlue:SITEPLAN_GLC_POLYGON');
+    var wmsGlcPoint = sourceGlc.getLayer('qlue:GLC_Point'),
+     wmsGlcPolyline = sourceGlc.getLayer('qlue:SITEPLAN_GLC'),
+     wmsGlcPolygon = sourceGlc.getLayer('qlue:SITEPLAN_GLC_POLYGON');
+
+    var MySource = L.WMS.Source.extend({
+    'ajax': function(url, callback) {
+        $.ajax(url, {
+            'context': this,
+            'success': function(result) {
+                callback.call(this, result);
+             }
+        });
+    },
+    'showFeatureInfo': function(latlng, info) {
+        $('.output').html(info);
+    }
+    });
 
     //var wmsLayer = L.tileLayer.wms('https://demo.boundlessgeo.com/geoserver/ows?', {
     //    layers: 'nasa:bluemarble'});
@@ -129,7 +145,7 @@
     var map = L.map('map', {
     	center: [-6.2, 106.9],
     	zoom: 11,
-    	layers: [streets, waze],
+    	layers: [streets, wmsGlcPoint, wmsGlcPolyline, wmsGlcPolygon],
     	zoomControl: true,
     	attributionControl: false,
     	fullscreenControl: true,
@@ -141,7 +157,9 @@
 		"Streets": streets,
 	};
 	var overlays = {
-		"GLC"	      : wmsGlcPolygon,
+        "GLC Point"   : wmsGlcPoint,
+        "GLC Polyline": wmsGlcPolyline,
+		"GLC Polygon" : wmsGlcPolygon,
 		"Terminal Bus": terminalBus,
 		"Laporan Waze": waze,
 	};
