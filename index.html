@@ -145,7 +145,7 @@
     var map = L.map('map', {
     	center: [-6.2, 106.9],
     	zoom: 11,
-    	layers: [streets, wmsGlcPoint, wmsGlcPolyline, wmsGlcPolygon],
+    	layers: [streets, wmsGlcPolygon],
     	zoomControl: true,
     	attributionControl: false,
     	fullscreenControl: true,
@@ -159,9 +159,9 @@
 	var overlays = {
         "GLC Point"   : wmsGlcPoint,
         "GLC Polyline": wmsGlcPolyline,
-		"GLC Polygon" : wmsGlcPolygon,
-		"Terminal Bus": terminalBus,
-		"Laporan Waze": waze,
+	"GLC Polygon" : wmsGlcPolygon,
+	"Terminal Bus": terminalBus,
+	"Laporan Waze": waze,
 	};
 	L.control.layers(baseLayers, overlays).addTo(map);
 </script>
