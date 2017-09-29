@@ -116,7 +116,7 @@
         "info_format": "text/html",
         "tiled": true
     };
-    var sourceGlc = L.WMS.source("http://localhost:8080/geoserver/qlue/wms", options);
+    var sourceGlc = L.WMS.source("http://192.168.100.100:8080/geoserver/qlue/wms", options);
     var wmsGlcPoint = sourceGlc.getLayer('qlue:GLC_Point'),
      wmsGlcPolyline = sourceGlc.getLayer('qlue:SITEPLAN_GLC'),
      wmsGlcPolygon = sourceGlc.getLayer('qlue:SITEPLAN_GLC_POLYGON');
